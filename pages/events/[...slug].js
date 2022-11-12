@@ -11,7 +11,7 @@ function FilteredEventsPage() {
   const router = useRouter();
 
   const filterData = router.query.slug;
-
+    console.log(filterData,'filtered data')
   if (!filterData) {
     return <p className='center'>Loading...</p>;
   }
