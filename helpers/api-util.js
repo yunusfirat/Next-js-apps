@@ -1,7 +1,7 @@
 export async function getAllEvents(){
     const response = await fetch('https://next-js-events-cb402-default-rtdb.firebaseio.com/events.json');
     const data = await response.json();
-
+    console.log(data,'firebase')
 
     const events = [];
 
@@ -18,4 +18,9 @@ export async function getAllEvents(){
 export async function getFeaturedEvents() {
     const allEvents = await getAllEvents();
     return allEvents.filter((event) => event.isFeatured);
+}
+
+export async function getEventById(id) {
+    const allEvents = await getAllEvents();
+    return allEvents.find((event) => event.id === id);
 }
