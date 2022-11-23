@@ -9,7 +9,7 @@ import ErrorAlert from '../../components/ui/error-alert';
 
 function FilteredEventsPage(props) {
   const router = useRouter();
-
+console.log(props,'props');
   // const filterData = router.query.slug;
   //   console.log(filterData,'filtered data')
 
@@ -65,7 +65,6 @@ export async function getServerSideProps(context){
   const { params } = context;
 
   const filterData = params.slug;
-
   const filteredYear = filterData[0];
   const filteredMonth = filterData[1];
 
