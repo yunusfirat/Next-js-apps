@@ -7,7 +7,7 @@ class MyDocument extends Document {
             <Html lang="en">
                 <Head />
                 <body>
-                    <div></div>
+                    <div id="overlays"></div>
                     <Main/>
                     <NextScript />
                 </body>

@@ -1,12 +1,13 @@
-import { Fragment, useEffect, useState } from "react";
-import { useRouter } from "next/router";
-import useSWR from "swr";
-import Head from "next/head";
-import { getFilteredEvents } from "../../helpers/api-util";
-import EventList from "../../components/events/event-list";
-import ResultsTitle from "../../components/events/results-title";
-import Button from "../../components/ui/button";
-import ErrorAlert from "../../components/ui/error-alert";
+import { Fragment, useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
+import useSWR from 'swr';
+import Head from 'next/head';
+
+import { getFilteredEvents } from '../../helpers/api-util';
+import EventList from '../../components/events/event-list';
+import ResultsTitle from '../../components/events/results-title';
+import Button from '../../components/ui/button';
+import ErrorAlert from '../../components/ui/error-alert';
 
 function FilteredEventsPage(props) {
   const [loadedEvents, setLoadedEvents] = useState();
@@ -17,6 +18,8 @@ function FilteredEventsPage(props) {
   const { data, error } = useSWR(
     "https://next-js-events-cb402-default-rtdb.firebaseio.com/events.json"
   );
+  
+  console.log(data, 'data')
 
   useEffect(() => {
     if (data) {
@@ -33,19 +36,18 @@ function FilteredEventsPage(props) {
     }
   }, [data]);
 
-  let pageHeadData = ( <Head>
-  <title>Filtered Events</title>
-  <meta
-    name="description"
-    content={`A list of filtered events`}
-  />
-</Head>)
+  let pageHeadData = (
+    <Head>
+      <title>Filtered Events</title>
+      <meta name='description' content={`A list of filtered events.`} />
+    </Head>
+  );
 
   if (!loadedEvents) {
     return (
       <Fragment>
         {pageHeadData}
-        <p className="center">Loading...</p>;
+        <p className='center'>Loading...</p>
       </Fragment>
     );
   }
@@ -60,11 +62,12 @@ function FilteredEventsPage(props) {
     <Head>
       <title>Filtered Events</title>
       <meta
-        name="description"
-        content={`All events for ${numMonth}/${numYear}`}
+        name='description'
+        content={`All events for ${numMonth}/${numYear}.`}
       />
     </Head>
   );
+
   if (
     isNaN(numYear) ||
     isNaN(numMonth) ||
@@ -80,8 +83,8 @@ function FilteredEventsPage(props) {
         <ErrorAlert>
           <p>Invalid filter. Please adjust your values!</p>
         </ErrorAlert>
-        <div className="center">
-          <Button link="/events">Show All Events</Button>
+        <div className='center'>
+          <Button link='/events'>Show All Events</Button>
         </div>
       </Fragment>
     );
@@ -102,8 +105,8 @@ function FilteredEventsPage(props) {
         <ErrorAlert>
           <p>No events found for the chosen filter!</p>
         </ErrorAlert>
-        <div className="center">
-          <Button link="/events">Show All Events</Button>
+        <div className='center'>
+          <Button link='/events'>Show All Events</Button>
         </div>
       </Fragment>
     );
